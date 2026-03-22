@@ -4,453 +4,388 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MBSA – Multicultural Business Student Association</title>
-    <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        font-family: Arial, sans-serif;
-        color: #333;
-      }
-
-      /* NAV */
-      nav {
-        background: #c5050c;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1rem 5%;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-      }
-      .nav-logo {
-        color: white;
-        font-size: 1.3rem;
-        font-weight: bold;
-        text-decoration: none;
-      }
-      .nav-links {
-        list-style: none;
-        display: flex;
-        gap: 1.5rem;
-      }
-      .nav-links a {
-        color: white;
-        text-decoration: none;
-        font-size: 0.95rem;
-      }
-      .nav-links a:hover {
-        text-decoration: underline;
-      }
-
-      /* HERO */
-      #hero {
-        background: #c5050c;
-        color: white;
-        text-align: center;
-        padding: 80px 5%;
-      }
-      #hero h1 {
-        font-size: 2.4rem;
-        margin-bottom: 1rem;
-      }
-      #hero p {
-        font-size: 1.1rem;
-        max-width: 580px;
-        margin: 0 auto 1.8rem;
-        line-height: 1.6;
-        opacity: 0.9;
-      }
-      .btn {
-        background: white;
-        color: #c5050c;
-        padding: 0.75rem 1.8rem;
-        border-radius: 4px;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 0.95rem;
-        display: inline-block;
-      }
-      .btn:hover {
-        background: #f0f0f0;
-      }
-
-      /* SECTIONS */
-      section {
-        padding: 60px 5%;
-        max-width: 1000px;
-        margin: 0 auto;
-      }
-      section h2 {
-        font-size: 1.8rem;
-        color: #c5050c;
-        margin-bottom: 1rem;
-      }
-      section p {
-        line-height: 1.7;
-        color: #444;
-        max-width: 680px;
-      }
-
-      /* ABOUT */
-      #about {
-        border-bottom: 1px solid #ddd;
-      }
-
-      /* EVENTS */
-      #events {
-        border-bottom: 1px solid #ddd;
-      }
-      .events-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-        gap: 1.2rem;
-        margin-top: 1.5rem;
-      }
-      .event-card {
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        padding: 1.2rem;
-        background: #fff8f8;
-      }
-      .event-card h3 {
-        font-size: 1rem;
-        color: #c5050c;
-        margin-bottom: 0.3rem;
-      }
-      .event-card .date {
-        font-size: 0.8rem;
-        color: #888;
-        margin-bottom: 0.5rem;
-      }
-      .event-card p {
-        font-size: 0.9rem;
-        color: #555;
-      }
-
-      /* BOARD */
-      #board {
-        border-bottom: 1px solid #ddd;
-      }
-      .board-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 1rem;
-        margin-top: 1.5rem;
-      }
-      .board-card {
-        text-align: center;
-        padding: 1.2rem 0.8rem;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-      }
-      .board-card .initials {
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        background: #c5050c;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 1.1rem;
-        margin: 0 auto 0.6rem;
-      }
-      .board-card h3 {
-        font-size: 0.9rem;
-        color: #222;
-      }
-      .board-card p {
-        font-size: 0.8rem;
-        color: #888;
-        margin-top: 0.2rem;
-      }
-
-      /* SIGN UP */
-      #signup {
-        border-bottom: 1px solid #ddd;
-      }
-      .signup-form {
-        display: flex;
-        gap: 0.7rem;
-        flex-wrap: wrap;
-        margin-top: 1.2rem;
-      }
-      .signup-form input {
-        flex: 1;
-        min-width: 220px;
-        padding: 0.7rem 1rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 0.95rem;
-        outline: none;
-      }
-      .signup-form input:focus {
-        border-color: #c5050c;
-      }
-      .signup-form button {
-        background: #c5050c;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        padding: 0.7rem 1.4rem;
-        font-size: 0.95rem;
-        font-weight: bold;
-        cursor: pointer;
-      }
-      .signup-form button:hover {
-        background: #a50000;
-      }
-      #signup-msg {
-        margin-top: 0.7rem;
-        font-size: 0.9rem;
-        color: #c5050c;
-      }
-
-      /* IDEAS */
-      #ideas {
-        border-bottom: 1px solid #ddd;
-      }
-      .idea-form {
-        margin-top: 1.2rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.9rem;
-        max-width: 500px;
-      }
-      .idea-form input,
-      .idea-form textarea {
-        padding: 0.7rem 1rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 0.95rem;
-        font-family: Arial, sans-serif;
-        outline: none;
-        resize: vertical;
-      }
-      .idea-form input:focus,
-      .idea-form textarea:focus {
-        border-color: #c5050c;
-      }
-      .idea-form button {
-        background: #c5050c;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        padding: 0.7rem 1.4rem;
-        font-size: 0.95rem;
-        font-weight: bold;
-        cursor: pointer;
-        align-self: flex-start;
-      }
-      .idea-form button:hover {
-        background: #a50000;
-      }
-      #idea-msg {
-        font-size: 0.9rem;
-        color: green;
-      }
-
-      /* FOOTER */
-      footer {
-        background: #222;
-        color: #aaa;
-        text-align: center;
-        padding: 1.8rem 5%;
-        font-size: 0.85rem;
-      }
-      footer a {
-        color: #ccc;
-        text-decoration: none;
-      }
-      footer a:hover {
-        text-decoration: underline;
-      }
-
-      @media (max-width: 600px) {
-        #hero h1 {
-          font-size: 1.7rem;
-        }
-        .nav-links {
-          gap: 1rem;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- NAV -->
-    <nav>
-      <a href="#hero" class="nav-logo">MBSA</a>
-      <ul class="nav-links">
+    <!-- ═══════════════════════════
+         NAVIGATION
+    ═══════════════════════════ -->
+    <nav id="navbar">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-mbsa">MBSA</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        &#9776;
+      </button>
+      <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
         <li><a href="#events">Events</a></li>
+        <li><a href="#past-events">Past Events</a></li>
         <li><a href="#board">Board</a></li>
         <li><a href="#signup">Join Us</a></li>
+        <li><a href="#ideas">Ideas</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
 
-    <!-- HERO -->
-    <div id="hero">
-      <h1>Multicultural Business Student Association</h1>
-      <p>
-        Empowering pre-business and business students at UW–Madison through
-        professional development, community, and cultural connection.
-      </p>
-      <a href="#signup" class="btn">Join Our Mailing List</a>
-    </div>
+    <!-- ═══════════════════════════
+         HERO
+    ═══════════════════════════ -->
+    <header id="hero">
+      <div class="hero-content">
+        <p class="hero-eyebrow">University of Wisconsin–Madison</p>
+        <h1>Multicultural Business<br />Student Association</h1>
+        <p class="hero-sub">
+          Empowering pre-business and business students through professional
+          development, community, and cultural connection.
+        </p>
+        <div class="hero-btns">
+          <a href="#signup" class="btn btn-white">Join Our Mailing List</a>
+          <a href="#events" class="btn btn-outline">See Events</a>
+        </div>
+      </div>
+    </header>
 
-    <!-- ABOUT -->
+    <!-- ═══════════════════════════
+         ABOUT
+    ═══════════════════════════ -->
     <section id="about">
-      <h2>About Us</h2>
-      <p>
-        MBSA is a student organization at the University of Wisconsin–Madison
-        dedicated to supporting business-minded students from all backgrounds.
-        We host resume workshops, interview prep sessions, speaker events,
-        LinkedIn coaching, and social events to help our members grow personally
-        and professionally.
-      </p>
-    </section>
-
-    <!-- EVENTS -->
-    <section id="events">
-      <h2>Upcoming Events</h2>
-      <p>Stay connected and join us at our next events.</p>
-      <div class="events-grid">
-        <div class="event-card">
-          <h3>Resume Workshop</h3>
-          <div class="date">April 5, 2026 · 5:00 PM</div>
-          <p>
-            Get your resume reviewed by board members and alumni volunteers.
-          </p>
-        </div>
-        <div class="event-card">
-          <h3>Speaker Night</h3>
-          <div class="date">April 12, 2026 · 6:30 PM</div>
-          <p>
-            Hear from professionals in finance and consulting about their career
-            journeys.
-          </p>
-        </div>
-        <div class="event-card">
-          <h3>Spring Social</h3>
-          <div class="date">April 26, 2026 · 4:00 PM</div>
-          <p>
-            Meet new members and close out the semester with the MBSA community.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- BOARD -->
-    <section id="board">
-      <h2>Our Board</h2>
-      <p>Meet the student leaders behind MBSA.</p>
-      <div class="board-grid">
-        <div class="board-card">
-          <div class="initials">CP</div>
-          <h3>Christina Pan</h3>
-          <p>President</p>
-        </div>
-        <div class="board-card">
-          <div class="initials">VP</div>
-          <h3>Board Member</h3>
-          <p>Vice President</p>
-        </div>
-        <div class="board-card">
-          <div class="initials">T</div>
-          <h3>Board Member</h3>
-          <p>Treasurer</p>
-        </div>
-        <div class="board-card">
-          <div class="initials">E</div>
-          <h3>Board Member</h3>
-          <p>Events Director</p>
-        </div>
-        <div class="board-card">
-          <div class="initials">M</div>
-          <h3>Board Member</h3>
-          <p>Marketing Director</p>
+      <div class="section-inner">
+        <div class="section-label">Who We Are</div>
+        <h2>About MBSA</h2>
+        <p class="section-body">
+          MBSA is a student organization at the University of Wisconsin–Madison
+          dedicated to supporting business-minded students from all backgrounds.
+          We host resume workshops, interview prep sessions, speaker events,
+          LinkedIn coaching, and social events to help our members grow
+          personally and professionally.
+        </p>
+        <div class="pillars">
+          <div class="pillar">
+            <div class="pillar-icon">&#128218;</div>
+            <h3>Professional Development</h3>
+            <p>
+              Resume workshops, interview prep, and LinkedIn coaching to set you
+              up for success.
+            </p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">&#127760;</div>
+            <h3>Cultural Connection</h3>
+            <p>
+              A welcoming community that celebrates diversity and multicultural
+              perspectives in business.
+            </p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">&#129309;</div>
+            <h3>Community</h3>
+            <p>
+              Social events and networking opportunities that build lasting
+              connections across campus.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SIGN UP -->
-    <section id="signup">
-      <h2>Join Our Mailing List</h2>
-      <p>Sign up to get updates on events, workshops, and opportunities.</p>
-      <form class="signup-form" id="signupForm">
-        <input
-          type="email"
-          id="signupEmail"
-          placeholder="your@wisc.edu"
-          required
-        />
-        <button type="submit">Subscribe</button>
-      </form>
-      <div id="signup-msg"></div>
+    <!-- ═══════════════════════════
+         UPCOMING EVENTS
+    ═══════════════════════════ -->
+    <section id="events" class="section-alt">
+      <div class="section-inner">
+        <div class="section-label">What's Coming Up</div>
+        <h2>Upcoming Events</h2>
+        <p class="section-body">
+          Stay connected and join us at our next events. All students are
+          welcome.
+        </p>
+        <div class="events-grid">
+          <article class="event-card">
+            <div class="event-tag">Workshop</div>
+            <h3>Resume Workshop</h3>
+            <div class="event-meta">
+              <span>&#128197; April 5, 2026</span>
+              <span>&#128336; 5:00 PM</span>
+              <span>&#128205; TBD</span>
+            </div>
+            <p>
+              Get your resume reviewed by board members and alumni volunteers.
+            </p>
+            <a href="#signup" class="btn btn-sm">RSVP / Learn More</a>
+          </article>
+
+          <article class="event-card">
+            <div class="event-tag">Speaker</div>
+            <h3>Speaker Night</h3>
+            <div class="event-meta">
+              <span>&#128197; April 12, 2026</span>
+              <span>&#128336; 6:30 PM</span>
+              <span>&#128205; TBD</span>
+            </div>
+            <p>
+              Hear from professionals in finance and consulting about their
+              career journeys.
+            </p>
+            <a href="#signup" class="btn btn-sm">RSVP / Learn More</a>
+          </article>
+
+          <article class="event-card">
+            <div class="event-tag">Social</div>
+            <h3>Spring Social</h3>
+            <div class="event-meta">
+              <span>&#128197; April 26, 2026</span>
+              <span>&#128336; 4:00 PM</span>
+              <span>&#128205; TBD</span>
+            </div>
+            <p>
+              Meet new members and close out the semester with the MBSA
+              community.
+            </p>
+            <a href="#signup" class="btn btn-sm">RSVP / Learn More</a>
+          </article>
+
+          <article class="event-card event-card--skeleton">
+            <div class="event-tag">Event</div>
+            <h3>Upcoming Event</h3>
+            <div class="event-meta">
+              <span>&#128197; Date TBD</span>
+              <span>&#128336; Time TBD</span>
+              <span>&#128205; Location TBD</span>
+            </div>
+            <p>
+              Details coming soon. Sign up for our mailing list to stay updated.
+            </p>
+            <a href="#signup" class="btn btn-sm">Get Notified</a>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <!-- IDEAS -->
+    <!-- ═══════════════════════════
+         PAST EVENTS (SKELETON)
+    ═══════════════════════════ -->
+    <section id="past-events">
+      <div class="section-inner">
+        <div class="section-label">Our History</div>
+        <h2>Past Events</h2>
+        <p class="section-body">
+          Take a look at what we've been up to. Photos and recaps will be added
+          here as MBSA provides them.
+        </p>
+        <div class="past-events-grid">
+          <article class="past-card">
+            <div class="past-card-img skeleton-img">
+              <!-- Replace with: <img src="images/event1.jpg" alt="Event name" /> -->
+              <span class="skeleton-label">Photo Coming Soon</span>
+            </div>
+            <div class="past-card-body">
+              <h3>Event Name</h3>
+              <p class="past-card-date">Semester / Date TBD</p>
+              <p>Add a short recap or description of this event here.</p>
+            </div>
+          </article>
+
+          <article class="past-card">
+            <div class="past-card-img skeleton-img">
+              <span class="skeleton-label">Photo Coming Soon</span>
+            </div>
+            <div class="past-card-body">
+              <h3>Event Name</h3>
+              <p class="past-card-date">Semester / Date TBD</p>
+              <p>Add a short recap or description of this event here.</p>
+            </div>
+          </article>
+
+          <article class="past-card">
+            <div class="past-card-img skeleton-img">
+              <span class="skeleton-label">Photo Coming Soon</span>
+            </div>
+            <div class="past-card-body">
+              <h3>Event Name</h3>
+              <p class="past-card-date">Semester / Date TBD</p>
+              <p>Add a short recap or description of this event here.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════
+         BOARD MEMBERS
+    ═══════════════════════════ -->
+    <section id="board" class="section-alt">
+      <div class="section-inner">
+        <div class="section-label">Leadership</div>
+        <h2>Our Board</h2>
+        <p class="section-body">Meet the student leaders behind MBSA.</p>
+        <div class="board-grid">
+          <div class="board-card">
+            <div class="initials">CP</div>
+            <h3>Christina Pan</h3>
+            <p class="role">President</p>
+          </div>
+          <div class="board-card">
+            <div class="initials">??</div>
+            <h3>Name TBD</h3>
+            <p class="role">Vice President</p>
+          </div>
+          <div class="board-card">
+            <div class="initials">??</div>
+            <h3>Name TBD</h3>
+            <p class="role">Treasurer</p>
+          </div>
+          <div class="board-card">
+            <div class="initials">??</div>
+            <h3>Name TBD</h3>
+            <p class="role">Events Director</p>
+          </div>
+          <div class="board-card">
+            <div class="initials">??</div>
+            <h3>Name TBD</h3>
+            <p class="role">Marketing Director</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════
+         JOIN / MAILING LIST
+    ═══════════════════════════ -->
+    <section id="signup" class="section-red">
+      <div class="section-inner">
+        <div class="section-label light">Get Involved</div>
+        <h2 class="light">Join Our Mailing List</h2>
+        <p class="section-body light">
+          Sign up to get updates on events, workshops, and opportunities
+          delivered straight to your inbox.
+        </p>
+        <form class="signup-form" id="signupForm">
+          <input type="text" id="signupName" placeholder="Your name" required />
+          <input
+            type="email"
+            id="signupEmail"
+            placeholder="your@wisc.edu"
+            required
+          />
+          <button type="submit" class="btn btn-white">Subscribe</button>
+        </form>
+        <p id="signup-msg" class="form-msg"></p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════
+         IDEA SUBMISSION
+    ═══════════════════════════ -->
     <section id="ideas">
-      <h2>Submit an Event Idea</h2>
-      <p>Have a suggestion for a future MBSA event? We'd love to hear it.</p>
-      <form class="idea-form" id="ideaForm">
-        <input type="text" id="ideaName" placeholder="Your name" required />
-        <input type="email" id="ideaEmail" placeholder="Your email" required />
-        <input
-          type="text"
-          id="ideaTitle"
-          placeholder="Event idea title"
-          required
-        />
-        <textarea
-          id="ideaDesc"
-          rows="4"
-          placeholder="Describe your idea..."
-          required
-        ></textarea>
-        <button type="submit">Submit</button>
-        <div id="idea-msg"></div>
-      </form>
+      <div class="section-inner">
+        <div class="section-label">Have a Suggestion?</div>
+        <h2>Submit an Event Idea</h2>
+        <p class="section-body">
+          Have an idea for a future MBSA event or workshop? We'd love to hear
+          from you.
+        </p>
+        <form class="idea-form" id="ideaForm">
+          <div class="form-row">
+            <input type="text" id="ideaName" placeholder="Your name" required />
+            <input
+              type="email"
+              id="ideaEmail"
+              placeholder="Your email"
+              required
+            />
+          </div>
+          <input
+            type="text"
+            id="ideaTitle"
+            placeholder="Event idea title"
+            required
+          />
+          <textarea
+            id="ideaDesc"
+            rows="5"
+            placeholder="Describe your idea — what is it, who is it for, why would it be valuable to MBSA members?"
+            required
+          ></textarea>
+          <button type="submit" class="btn btn-red">Submit Idea</button>
+          <p id="idea-msg" class="form-msg success"></p>
+        </form>
+      </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- ═══════════════════════════
+         CONTACT
+    ═══════════════════════════ -->
+    <section id="contact" class="section-alt">
+      <div class="section-inner contact-inner">
+        <div>
+          <div class="section-label">Reach Out</div>
+          <h2>Contact Us</h2>
+          <p class="section-body">
+            Questions? Want to get involved? Reach out and a board member will
+            get back to you.
+          </p>
+          <ul class="contact-list">
+            <li>
+              <span class="contact-icon">&#9993;</span>
+              <a href="mailto:mbsa.uw.madison@gmail.com"
+                >mbsa.uw.madison@gmail.com</a
+              >
+            </li>
+            <li>
+              <span class="contact-icon">&#128247;</span>
+              <span
+                >Instagram: <strong>@mbsa_uwmadison</strong> — link TBD</span
+              >
+            </li>
+            <li>
+              <span class="contact-icon">&#128101;</span>
+              <span>LinkedIn: link TBD</span>
+            </li>
+          </ul>
+        </div>
+        <div class="contact-map-placeholder skeleton-img">
+          <span class="skeleton-label"
+            >Campus Location / Map<br />Coming Soon</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════
+         FOOTER
+    ═══════════════════════════ -->
     <footer>
-      <p>
-        © 2026 Multicultural Business Student Association · University of
-        Wisconsin–Madison
-      </p>
-      <p style="margin-top: 0.4rem">
-        <a href="mailto:mbsa.uw.madison@gmail.com">mbsa.uw.madison@gmail.com</a>
-      </p>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="logo-mbsa">MBSA</span>
+          <p>
+            Multicultural Business Student Association<br />University of
+            Wisconsin–Madison
+          </p>
+        </div>
+        <nav class="footer-nav">
+          <a href="#about">About</a>
+          <a href="#events">Events</a>
+          <a href="#past-events">Past Events</a>
+          <a href="#board">Board</a>
+          <a href="#signup">Join Us</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="footer-contact">
+          <a href="mailto:mbsa.uw.madison@gmail.com"
+            >mbsa.uw.madison@gmail.com</a
+          >
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2026 Multicultural Business Student Association · University of
+          Wisconsin–Madison
+        </p>
+      </div>
     </footer>
 
-    <script>
-      document
-        .getElementById("signupForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          const email = document.getElementById("signupEmail").value;
-          document.getElementById("signup-msg").textContent =
-            "Thanks! We'll be in touch at " + email;
-          this.reset();
-        });
-
-      document
-        .getElementById("ideaForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          document.getElementById("idea-msg").textContent =
-            "Thanks! Your idea has been submitted.";
-          this.reset();
-        });
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
