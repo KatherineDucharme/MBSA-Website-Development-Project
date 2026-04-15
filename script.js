@@ -14,35 +14,7 @@ if (navToggle && navLinks) {
 }
 
 const signupForm = document.getElementById("signupForm");
-if (signupForm) {
-  signupForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const name = document.getElementById("signupName").value.trim();
-    const email = document.getElementById("signupEmail").value.trim();
-    const msg = document.getElementById("signup-msg");
-
-    if (msg) {
-      msg.textContent = `Thanks, ${name}! We'll be in touch at ${email}.`;
-    }
-
-    this.reset();
-  });
-}
-
 const ideaForm = document.getElementById("ideaForm");
-if (ideaForm) {
-  ideaForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const msg = document.getElementById("idea-msg");
-
-    if (msg) {
-      msg.textContent =
-        "✓ Thanks! Your idea has been submitted to the MBSA board.";
-    }
-
-    this.reset();
-  });
-}
 
 const authModal = document.getElementById("authModal");
 const closeAuthModal = document.getElementById("closeAuthModal");
@@ -56,6 +28,35 @@ const signInForm = document.getElementById("signInForm");
 const signUpForm = document.getElementById("signUpForm");
 const signInMsg = document.getElementById("signInMsg");
 const signUpMsg = document.getElementById("signUpMsg");
+
+const mailingModal = document.getElementById("mailingModal");
+const closeMailingModal = document.getElementById("closeMailingModal");
+const openMailingModalNav = document.getElementById("openMailingModalNav");
+const openMailingModalHero = document.getElementById("openMailingModalHero");
+const openMailingModal = document.getElementById("openMailingModal");
+
+const ideaModal = document.getElementById("ideaModal");
+const closeIdeaModal = document.getElementById("closeIdeaModal");
+const openIdeaModalNav = document.getElementById("openIdeaModalNav");
+const openIdeaModal = document.getElementById("openIdeaModal");
+
+const openEventModal = document.getElementById("openEventModal");
+const closeEventModal = document.getElementById("closeEventModal");
+const eventModal = document.getElementById("eventModal");
+const createEventForm = document.getElementById("createEventForm");
+const eventsGrid = document.getElementById("eventsGrid");
+
+function openModalElement(modal) {
+  if (modal) {
+    modal.classList.remove("hidden");
+  }
+}
+
+function closeModalElement(modal) {
+  if (modal) {
+    modal.classList.add("hidden");
+  }
+}
 
 function setMode(mode) {
   if (!signInPanel || !signUpPanel || !showSignIn || !showSignUp) return;
@@ -73,31 +74,26 @@ function setMode(mode) {
   }
 }
 
-function openModal(mode) {
+function openAuthModal(mode) {
   if (!authModal) return;
   authModal.classList.remove("hidden");
   setMode(mode);
 }
 
-function closeModal() {
+function closeAuthModalFn() {
   if (!authModal) return;
   authModal.classList.add("hidden");
 
-  if (signInMsg) {
-    signInMsg.textContent = "";
-  }
-
-  if (signUpMsg) {
-    signUpMsg.textContent = "";
-  }
+  if (signInMsg) signInMsg.textContent = "";
+  if (signUpMsg) signUpMsg.textContent = "";
 }
 
 if (navSignIn) {
-  navSignIn.addEventListener("click", () => openModal("signin"));
+  navSignIn.addEventListener("click", () => openAuthModal("signin"));
 }
 
 if (navSignUp) {
-  navSignUp.addEventListener("click", () => openModal("signup"));
+  navSignUp.addEventListener("click", () => openAuthModal("signup"));
 }
 
 if (showSignIn) {
@@ -109,13 +105,13 @@ if (showSignUp) {
 }
 
 if (closeAuthModal) {
-  closeAuthModal.addEventListener("click", closeModal);
+  closeAuthModal.addEventListener("click", closeAuthModalFn);
 }
 
 if (authModal) {
   authModal.addEventListener("click", (e) => {
     if (e.target === authModal) {
-      closeModal();
+      closeAuthModalFn();
     }
   });
 }
@@ -146,11 +142,106 @@ if (signUpForm) {
   });
 }
 
-const openEventModal = document.getElementById("openEventModal");
-const closeEventModal = document.getElementById("closeEventModal");
-const eventModal = document.getElementById("eventModal");
-const createEventForm = document.getElementById("createEventForm");
-const eventsGrid = document.getElementById("eventsGrid");
+if (openMailingModalNav) {
+  openMailingModalNav.addEventListener("click", () => {
+    openModalElement(mailingModal);
+  });
+}
+
+if (openMailingModalHero) {
+  openMailingModalHero.addEventListener("click", () => {
+    openModalElement(mailingModal);
+  });
+}
+
+if (openMailingModal) {
+  openMailingModal.addEventListener("click", () => {
+    openModalElement(mailingModal);
+  });
+}
+
+if (closeMailingModal) {
+  closeMailingModal.addEventListener("click", () => {
+    closeModalElement(mailingModal);
+  });
+}
+
+if (mailingModal) {
+  mailingModal.addEventListener("click", (e) => {
+    if (e.target === mailingModal) {
+      closeModalElement(mailingModal);
+    }
+  });
+}
+
+if (openIdeaModalNav) {
+  openIdeaModalNav.addEventListener("click", () => {
+    openModalElement(ideaModal);
+  });
+}
+
+if (openIdeaModal) {
+  openIdeaModal.addEventListener("click", () => {
+    openModalElement(ideaModal);
+  });
+}
+
+if (closeIdeaModal) {
+  closeIdeaModal.addEventListener("click", () => {
+    closeModalElement(ideaModal);
+  });
+}
+
+if (ideaModal) {
+  ideaModal.addEventListener("click", (e) => {
+    if (e.target === ideaModal) {
+      closeModalElement(ideaModal);
+    }
+  });
+}
+
+if (signupForm) {
+  signupForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const name = document.getElementById("signupName").value.trim();
+    const email = document.getElementById("signupEmail").value.trim();
+    const msg = document.getElementById("signup-msg");
+
+    if (msg) {
+      msg.textContent = `Thanks, ${name}! We'll be in touch at ${email}.`;
+    }
+
+    this.reset();
+
+    setTimeout(() => {
+      closeModalElement(mailingModal);
+      if (msg) {
+        msg.textContent = "";
+      }
+    }, 1200);
+  });
+}
+
+if (ideaForm) {
+  ideaForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const msg = document.getElementById("idea-msg");
+
+    if (msg) {
+      msg.textContent =
+        "✓ Thanks! Your idea has been submitted to the MBSA board.";
+    }
+
+    this.reset();
+
+    setTimeout(() => {
+      closeModalElement(ideaModal);
+      if (msg) {
+        msg.textContent = "";
+      }
+    }, 1200);
+  });
+}
 
 function attachDeleteHandlers() {
   document.querySelectorAll(".delete-event-btn").forEach((button) => {
@@ -166,22 +257,22 @@ function attachDeleteHandlers() {
   });
 }
 
-if (openEventModal && eventModal) {
+if (openEventModal) {
   openEventModal.addEventListener("click", () => {
-    eventModal.classList.remove("hidden");
+    openModalElement(eventModal);
   });
 }
 
-if (closeEventModal && eventModal) {
+if (closeEventModal) {
   closeEventModal.addEventListener("click", () => {
-    eventModal.classList.add("hidden");
+    closeModalElement(eventModal);
   });
 }
 
 if (eventModal) {
   eventModal.addEventListener("click", (e) => {
     if (e.target === eventModal) {
-      eventModal.classList.add("hidden");
+      closeModalElement(eventModal);
     }
   });
 }
@@ -216,7 +307,7 @@ if (createEventForm && eventsGrid) {
 
     eventsGrid.prepend(newCard);
     attachDeleteHandlers();
-    eventModal.classList.add("hidden");
+    closeModalElement(eventModal);
     this.reset();
   });
 }

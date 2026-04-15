@@ -821,13 +821,24 @@ footer {
 
 .auth-close {
   position: absolute;
-  top: 0.7rem;
-  right: 0.9rem;
-  background: none;
+  top: 5px;
+  right: 5px;
+
+  width: 25px;
+  height: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
   border: none;
-  font-size: 1.8rem;
+
+  font-size: 18px;
   color: var(--dark-gray);
   cursor: pointer;
+
+  line-height: 1;
 }
 
 .auth-tabs {
@@ -994,4 +1005,99 @@ footer {
     flex-direction: column;
     align-items: stretch;
   }
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-action-btn {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid var(--white);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: var(--font-main);
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.nav-action-btn:hover {
+  background: var(--white);
+  color: var(--red);
+}
+
+@media (max-width: 768px) {
+  .nav-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .nav-action-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.custom-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 2600;
+}
+
+.custom-modal-box {
+  background: var(--white);
+  width: 100%;
+  max-width: 560px;
+  border-radius: 14px;
+  padding: 1.5rem;
+  position: relative;
+  box-shadow: var(--shadow-md);
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.9rem;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--dark-gray);
+  cursor: pointer;
+}
+
+.modal-form {
+  margin-top: 1rem;
+}
+
+.custom-modal-box .signup-form input {
+  color: var(--black);
+  background: var(--white);
+  border: 1px solid #ccc;
+}
+
+.custom-modal-box .signup-form input::placeholder {
+  color: var(--mid-gray);
+}
+
+.custom-modal-box .signup-form input:focus {
+  border-color: var(--red);
+  background: var(--white);
+}
+
+.custom-modal-box #signup-msg {
+  color: var(--dark-gray);
 }

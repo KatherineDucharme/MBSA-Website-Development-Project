@@ -22,15 +22,17 @@
         <li><a href="#events">Events</a></li>
         <li><a href="#past-events">Past Events</a></li>
         <li><a href="#board">Board</a></li>
-        <li><a href="#signup">Join Us</a></li>
-        <li><a href="#ideas">Ideas</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><button id="navSignIn" class="nav-auth-btn">Sign In</button></li>
-        <li>
-          <button id="navSignUp" class="nav-auth-btn nav-auth-btn-outline">
-            Sign Up
+        <div class="nav-actions">
+          <button id="openMailingModalNav" class="nav-action-btn">
+            Join Mailing List
           </button>
-        </li>
+          <button id="openIdeaModalNav" class="nav-action-btn">
+            Submit Event Idea
+          </button>
+          <button id="navSignIn" class="nav-action-btn">Sign In</button>
+          <button id="navSignUp" class="nav-action-btn">Sign Up</button>
+        </div>
       </ul>
     </nav>
 
@@ -46,7 +48,9 @@
           development, community, and cultural connection.
         </p>
         <div class="hero-btns">
-          <a href="#signup" class="btn btn-white">Join Our Mailing List</a>
+          <button id="openMailingModalHero" class="btn btn-white">
+            Join Our Mailing List
+          </button>
           <a href="#events" class="btn btn-outline">See Events</a>
         </div>
       </div>
@@ -301,70 +305,6 @@
     </section>
 
     <!-- ═══════════════════════════
-         JOIN / MAILING LIST
-    ═══════════════════════════ -->
-    <section id="signup" class="section-red">
-      <div class="section-inner">
-        <div class="section-label light">Get Involved</div>
-        <h2 class="light">Join Our Mailing List</h2>
-        <p class="section-body light">
-          Sign up to get updates on events, workshops, and opportunities
-          delivered straight to your inbox.
-        </p>
-        <form class="signup-form" id="signupForm">
-          <input type="text" id="signupName" placeholder="Your name" required />
-          <input
-            type="email"
-            id="signupEmail"
-            placeholder="your@wisc.edu"
-            required
-          />
-          <button type="submit" class="btn btn-white">Subscribe</button>
-        </form>
-        <p id="signup-msg" class="form-msg"></p>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════
-         IDEA SUBMISSION
-    ═══════════════════════════ -->
-    <section id="ideas">
-      <div class="section-inner">
-        <div class="section-label">Have a Suggestion?</div>
-        <h2>Submit an Event Idea</h2>
-        <p class="section-body">
-          Have an idea for a future MBSA event or workshop? We'd love to hear
-          from you.
-        </p>
-        <form class="idea-form" id="ideaForm">
-          <div class="form-row">
-            <input type="text" id="ideaName" placeholder="Your name" required />
-            <input
-              type="email"
-              id="ideaEmail"
-              placeholder="Your email"
-              required
-            />
-          </div>
-          <input
-            type="text"
-            id="ideaTitle"
-            placeholder="Event idea title"
-            required
-          />
-          <textarea
-            id="ideaDesc"
-            rows="5"
-            placeholder="Describe your idea — what is it, who is it for, why would it be valuable to MBSA members?"
-            required
-          ></textarea>
-          <button type="submit" class="btn btn-red">Submit Idea</button>
-          <p id="idea-msg" class="form-msg success"></p>
-        </form>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════
          CONTACT
     ═══════════════════════════ -->
     <section id="contact" class="section-alt">
@@ -522,6 +462,67 @@
             required
           ></textarea>
           <button type="submit" class="btn btn-red">Add Event</button>
+        </form>
+      </div>
+    </div>
+    <div id="mailingModal" class="custom-modal hidden">
+      <div class="custom-modal-box">
+        <button
+          id="closeMailingModal"
+          class="modal-close"
+          aria-label="Close modal"
+        >
+          &times;
+        </button>
+        <h2>Join Our Mailing List</h2>
+        <form class="signup-form modal-form" id="signupForm">
+          <input type="text" id="signupName" placeholder="Your name" required />
+          <input
+            type="email"
+            id="signupEmail"
+            placeholder="your@wisc.edu"
+            required
+          />
+          <button type="submit" class="btn btn-red">Subscribe</button>
+        </form>
+        <p id="signup-msg" class="form-msg"></p>
+      </div>
+    </div>
+
+    <div id="ideaModal" class="custom-modal hidden">
+      <div class="custom-modal-box">
+        <button
+          id="closeIdeaModal"
+          class="modal-close"
+          aria-label="Close modal"
+        >
+          &times;
+        </button>
+        <h2>Submit an Event Idea</h2>
+        <form class="idea-form modal-form" id="ideaForm">
+          <div class="form-row">
+            <input type="text" id="ideaName" placeholder="Your name" required />
+            <input
+              type="email"
+              id="ideaEmail"
+              placeholder="Your email"
+              required
+            />
+          </div>
+          <input
+            type="text"
+            id="ideaTitle"
+            placeholder="Event idea title"
+            required
+          />
+          <textarea
+            id="ideaDesc"
+            rows="5"
+            placeholder="Describe your idea — what is it, who is it for, why would it be valuable to MBSA members?"
+            required
+          ></textarea>
+          <button type="submit" class="btn btn-red">Submit Idea</button>
+          <p id="idea-msg" class="form-msg success"></p>
         </form>
       </div>
     </div>
