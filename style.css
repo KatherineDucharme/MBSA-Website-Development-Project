@@ -903,3 +903,95 @@ footer {
   object-fit: cover;
   display: block;
 }
+
+.events-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.event-card {
+  position: relative;
+}
+
+.delete-event-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: #f3f3f3;
+  color: var(--dark-gray);
+  font-size: 1.1rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.delete-event-btn:hover {
+  background: #e2e2e2;
+}
+
+.event-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 2500;
+}
+
+.event-modal-box {
+  background: var(--white);
+  width: 100%;
+  max-width: 500px;
+  border-radius: 14px;
+  padding: 1.5rem;
+  position: relative;
+  box-shadow: var(--shadow-md);
+}
+
+.event-close {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.9rem;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--dark-gray);
+  cursor: pointer;
+}
+
+.event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+.event-form input,
+.event-form textarea {
+  padding: 0.8rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-family: var(--font-main);
+  outline: none;
+}
+
+.event-form input:focus,
+.event-form textarea:focus {
+  border-color: var(--red);
+}
+
+@media (max-width: 768px) {
+  .events-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

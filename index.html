@@ -101,13 +101,24 @@
     <section id="events" class="section-alt">
       <div class="section-inner">
         <div class="section-label">What's Coming Up</div>
-        <h2>Upcoming Events</h2>
-        <p class="section-body">
-          Stay connected and join us at our next events. All students are
-          welcome.
-        </p>
-        <div class="events-grid">
+        <div class="events-header">
+          <div>
+            <h2>Upcoming Events</h2>
+            <p class="section-body">
+              Stay connected and join us at our next events. All students are
+              welcome.
+            </p>
+          </div>
+          <button id="openEventModal" class="btn btn-red">
+            Create New Event
+          </button>
+        </div>
+
+        <div class="events-grid" id="eventsGrid">
           <article class="event-card">
+            <button class="delete-event-btn" aria-label="Delete event">
+              &times;
+            </button>
             <div class="event-tag">Workshop</div>
             <h3>Resume Workshop</h3>
             <div class="event-meta">
@@ -118,10 +129,12 @@
             <p>
               Get your resume reviewed by board members and alumni volunteers.
             </p>
-            <a href="#signup" class="btn btn-sm">RSVP / Learn More</a>
           </article>
 
           <article class="event-card">
+            <button class="delete-event-btn" aria-label="Delete event">
+              &times;
+            </button>
             <div class="event-tag">Speaker</div>
             <h3>Speaker Night</h3>
             <div class="event-meta">
@@ -133,10 +146,12 @@
               Hear from professionals in finance and consulting about their
               career journeys.
             </p>
-            <a href="#signup" class="btn btn-sm">RSVP / Learn More</a>
           </article>
 
           <article class="event-card">
+            <button class="delete-event-btn" aria-label="Delete event">
+              &times;
+            </button>
             <div class="event-tag">Social</div>
             <h3>Spring Social</h3>
             <div class="event-meta">
@@ -148,21 +163,6 @@
               Meet new members and close out the semester with the MBSA
               community.
             </p>
-            <a href="#signup" class="btn btn-sm">RSVP / Learn More</a>
-          </article>
-
-          <article class="event-card event-card--skeleton">
-            <div class="event-tag">Event</div>
-            <h3>Upcoming Event</h3>
-            <div class="event-meta">
-              <span>&#128197; Date TBD</span>
-              <span>&#128336; Time TBD</span>
-              <span>&#128205; Location TBD</span>
-            </div>
-            <p>
-              Details coming soon. Sign up for our mailing list to stay updated.
-            </p>
-            <a href="#signup" class="btn btn-sm">Get Notified</a>
           </article>
         </div>
       </div>
@@ -482,7 +482,49 @@
         </div>
       </div>
     </div>
+    <div id="eventModal" class="event-modal hidden">
+      <div class="event-modal-box">
+        <button
+          id="closeEventModal"
+          class="event-close"
+          aria-label="Close modal"
+        >
+          &times;
+        </button>
 
+        <h2>Create New Event</h2>
+
+        <form id="createEventForm" class="event-form">
+          <input
+            type="text"
+            id="eventType"
+            placeholder="Event type (Workshop, Speaker, Social)"
+            required
+          />
+          <input
+            type="text"
+            id="eventTitle"
+            placeholder="Event title"
+            required
+          />
+          <input type="text" id="eventDate" placeholder="Date" required />
+          <input type="text" id="eventTime" placeholder="Time" required />
+          <input
+            type="text"
+            id="eventLocation"
+            placeholder="Location"
+            required
+          />
+          <textarea
+            id="eventDescription"
+            rows="4"
+            placeholder="Event description"
+            required
+          ></textarea>
+          <button type="submit" class="btn btn-red">Add Event</button>
+        </form>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

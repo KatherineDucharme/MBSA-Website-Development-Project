@@ -145,3 +145,80 @@ if (signUpForm) {
     this.reset();
   });
 }
+
+const openEventModal = document.getElementById("openEventModal");
+const closeEventModal = document.getElementById("closeEventModal");
+const eventModal = document.getElementById("eventModal");
+const createEventForm = document.getElementById("createEventForm");
+const eventsGrid = document.getElementById("eventsGrid");
+
+function attachDeleteHandlers() {
+  document.querySelectorAll(".delete-event-btn").forEach((button) => {
+    if (!button.dataset.bound) {
+      button.dataset.bound = "true";
+      button.addEventListener("click", () => {
+        const card = button.closest(".event-card");
+        if (card) {
+          card.remove();
+        }
+      });
+    }
+  });
+}
+
+if (openEventModal && eventModal) {
+  openEventModal.addEventListener("click", () => {
+    eventModal.classList.remove("hidden");
+  });
+}
+
+if (closeEventModal && eventModal) {
+  closeEventModal.addEventListener("click", () => {
+    eventModal.classList.add("hidden");
+  });
+}
+
+if (eventModal) {
+  eventModal.addEventListener("click", (e) => {
+    if (e.target === eventModal) {
+      eventModal.classList.add("hidden");
+    }
+  });
+}
+
+if (createEventForm && eventsGrid) {
+  createEventForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const type = document.getElementById("eventType").value.trim();
+    const title = document.getElementById("eventTitle").value.trim();
+    const date = document.getElementById("eventDate").value.trim();
+    const time = document.getElementById("eventTime").value.trim();
+    const location = document.getElementById("eventLocation").value.trim();
+    const description = document
+      .getElementById("eventDescription")
+      .value.trim();
+
+    const newCard = document.createElement("article");
+    newCard.className = "event-card";
+
+    newCard.innerHTML = `
+      <button class="delete-event-btn" aria-label="Delete event">&times;</button>
+      <div class="event-tag">${type}</div>
+      <h3>${title}</h3>
+      <div class="event-meta">
+        <span>&#128197; ${date}</span>
+        <span>&#128336; ${time}</span>
+        <span>&#128205; ${location}</span>
+      </div>
+      <p>${description}</p>
+    `;
+
+    eventsGrid.prepend(newCard);
+    attachDeleteHandlers();
+    eventModal.classList.add("hidden");
+    this.reset();
+  });
+}
+
+attachDeleteHandlers();
