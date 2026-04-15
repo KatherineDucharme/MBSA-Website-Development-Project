@@ -772,3 +772,120 @@ footer {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.hidden {
+  display: none !important;
+}
+
+.nav-auth-btn {
+  background: var(--white);
+  color: var(--red);
+  border: 2px solid var(--white);
+  border-radius: var(--radius);
+  padding: 0.45rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.nav-auth-btn-outline {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid var(--white);
+}
+
+.nav-auth-btn:hover {
+  opacity: 0.95;
+}
+
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 2000;
+}
+
+.auth-modal-box {
+  background: var(--white);
+  width: 100%;
+  max-width: 420px;
+  border-radius: 14px;
+  padding: 1.5rem;
+  position: relative;
+  box-shadow: var(--shadow-md);
+}
+
+.auth-close {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.9rem;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--dark-gray);
+  cursor: pointer;
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 0.7rem;
+  border: 1px solid var(--light-gray);
+  background: var(--off-white);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--dark-gray);
+}
+
+.auth-tab.active {
+  background: var(--red);
+  color: var(--white);
+  border-color: var(--red);
+}
+
+.auth-panel h2 {
+  margin-bottom: 1rem;
+  color: var(--black);
+  font-size: 1.4rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.auth-form input {
+  padding: 0.8rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.auth-form input:focus {
+  border-color: var(--red);
+}
+
+.auth-msg {
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  color: var(--dark-gray);
+}
+
+@media (max-width: 768px) {
+  .nav-links .nav-auth-btn,
+  .nav-links .nav-auth-btn-outline {
+    width: 100%;
+  }
+}
