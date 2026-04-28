@@ -416,3 +416,34 @@ if (eventsGrid) {
     }
   });
 }
+
+// Admin email
+const adminEmails = [
+  "echansen2@wisc.edu",
+  "sstafeil@wisc.edu",
+  "kaducharme@wisc.edu",
+  "wbah@wisc.edu",
+  "hkaczor@wisc.edu",
+];
+let currentUserEmail = "";
+
+if (signInForm) {
+  signInForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    currentUserEmail = document
+      .getElementById("signInEmail")
+      .value.trim()
+      .toLowerCase();
+
+    if (currentUserEmail !== adminEmail.toLowerCase()) {
+      if (openEventModal) {
+        openEventModal.style.display = "none";
+      }
+
+      document.querySelectorAll(".delete-event-btn").forEach((btn) => {
+        btn.style.display = "none";
+      });
+    }
+  });
+}
