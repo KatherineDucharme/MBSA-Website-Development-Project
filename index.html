@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MBSA – Multicultural Business Student Association</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
 
@@ -395,8 +399,15 @@
         <div id="signInPanel" class="auth-panel">
           <h2>Sign In</h2>
           <form id="signInForm" class="auth-form">
-            <input type="email" id="signInEmail" placeholder="Email" required />
             <input
+              class="input"
+              type="email"
+              id="signInEmail"
+              placeholder="Email"
+              required
+            />
+            <input
+              class="input"
               type="password"
               id="signInPassword"
               placeholder="Password"
@@ -411,13 +422,21 @@
           <h2>Sign Up</h2>
           <form id="signUpForm" class="auth-form">
             <input
+              class="input"
               type="text"
               id="signUpUsername"
               placeholder="Username"
               required
             />
-            <input type="email" id="signUpEmail" placeholder="Email" required />
             <input
+              class="input"
+              type="email"
+              id="signUpEmail"
+              placeholder="Email"
+              required
+            />
+            <input
+              class="input"
               type="password"
               id="signUpPassword"
               placeholder="Password"
@@ -443,22 +462,43 @@
         <h2>Create New Event</h2>
 
         <form id="createEventForm" class="event-form">
-          <input type="text" id="eventType" placeholder="Event type" required />
           <input
+            class="input"
+            type="text"
+            id="eventType"
+            placeholder="Event type"
+            required
+          />
+          <input
+            class="input"
             type="text"
             id="eventTitle"
             placeholder="Event title"
             required
           />
-          <input type="text" id="eventDate" placeholder="Date" required />
-          <input type="text" id="eventTime" placeholder="Time" required />
           <input
+            class="input"
+            type="text"
+            id="eventDate"
+            placeholder="Date"
+            required
+          />
+          <input
+            class="input"
+            type="text"
+            id="eventTime"
+            placeholder="Time"
+            required
+          />
+          <input
+            class="input"
             type="text"
             id="eventLocation"
             placeholder="Location"
             required
           />
           <textarea
+            class="textarea"
             id="eventDescription"
             rows="4"
             placeholder="Event description"
@@ -483,8 +523,15 @@
         <h2>Join Our Mailing List</h2>
 
         <form class="signup-form modal-form" id="signupForm">
-          <input type="text" id="signupName" placeholder="Your name" required />
           <input
+            class="input"
+            type="text"
+            id="signupName"
+            placeholder="Your name"
+            required
+          />
+          <input
+            class="input"
             type="email"
             id="signupEmail"
             placeholder="your@wisc.edu"
@@ -511,28 +558,35 @@
 
         <form class="idea-form modal-form" id="ideaForm">
           <div class="form-row">
-            <input type="text" id="ideaName" placeholder="Your name" required />
             <input
+              class="input"
+              type="text"
+              id="ideaName"
+              placeholder="Your name"
+              required
+            />
+            <input
+              class="input"
               type="email"
               id="ideaEmail"
               placeholder="Your email"
               required
             />
+            <input
+              class="input"
+              type="text"
+              id="ideaTitle"
+              placeholder="Event idea title"
+              required
+            />
+            <textarea
+              class="textarea"
+              id="ideaDesc"
+              rows="5"
+              placeholder="Describe your idea"
+              required
+            ></textarea>
           </div>
-
-          <input
-            type="text"
-            id="ideaTitle"
-            placeholder="Event idea title"
-            required
-          />
-
-          <textarea
-            id="ideaDesc"
-            rows="5"
-            placeholder="Describe your idea"
-            required
-          ></textarea>
 
           <button type="submit" class="btn btn-red">Submit Idea</button>
           <p id="idea-msg" class="form-msg success"></p>
