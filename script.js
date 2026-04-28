@@ -383,16 +383,16 @@ if (createEventForm) {
       const card = document.createElement("article");
       card.className = "event-card";
       card.innerHTML = `
-        <div class="event-tag">${type}</div>
-        <h3>${title}</h3>
-        <div class="event-meta">
-          <span>&#128197; ${date}</span>
-          <span>&#128336; ${time}</span>
-          <span>&#128205; ${location}</span>
-        </div>
-        <p>${description}</p>
-      `;
-
+  <button class="delete-event-btn" aria-label="Delete event">&times;</button>
+  <div class="event-tag">${type}</div>
+  <h3>${title}</h3>
+  <div class="event-meta">
+    <span>&#128197; ${date}</span>
+    <span>&#128336; ${time}</span>
+    <span>&#128205; ${location}</span>
+  </div>
+  <p>${description}</p>
+`;
       eventsGrid.prepend(card);
 
       eventMsg.textContent = "Event added!";
@@ -405,6 +405,14 @@ if (createEventForm) {
     } catch (error) {
       eventMsg.textContent = error.message;
       console.error(error);
+    }
+  });
+}
+
+if (eventsGrid) {
+  eventsGrid.addEventListener("click", (e) => {
+    if (e.target.classList.contains("delete-event-btn")) {
+      e.target.closest(".event-card").remove();
     }
   });
 }
