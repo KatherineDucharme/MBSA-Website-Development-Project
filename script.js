@@ -13,6 +13,8 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
@@ -47,17 +49,20 @@ function closeModal(modal) {
 }
 
 const authModal = document.getElementById("authModal");
+const closeAuthModal = document.getElementById("closeAuthModal");
 const navSignIn = document.getElementById("navSignIn");
 const navSignUp = document.getElementById("navSignUp");
-const closeAuthModal = document.getElementById("closeAuthModal");
+const navLogout = document.getElementById("navLogout");
 
 const showSignIn = document.getElementById("showSignIn");
 const showSignUp = document.getElementById("showSignUp");
+
 const signInPanel = document.getElementById("signInPanel");
 const signUpPanel = document.getElementById("signUpPanel");
 
 const signInForm = document.getElementById("signInForm");
 const signUpForm = document.getElementById("signUpForm");
+
 const signInMsg = document.getElementById("signInMsg");
 const signUpMsg = document.getElementById("signUpMsg");
 
@@ -75,6 +80,30 @@ function setAuthMode(mode) {
   }
 }
 
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    if (navSignIn) navSignIn.style.display = "none";
+    if (navSignUp) navSignUp.style.display = "none";
+    if (navLogout) navLogout.classList.remove("hidden");
+
+    closeModal(authModal);
+  } else {
+    if (navSignIn) navSignIn.style.display = "inline-block";
+    if (navSignUp) navSignUp.style.display = "inline-block";
+    if (navLogout) navLogout.classList.add("hidden");
+  }
+});
+
+if (navLogout) {
+  navLogout.addEventListener("click", async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error(error);
+    }
+  });
+}
+
 if (navSignIn) {
   navSignIn.addEventListener("click", () => {
     openModal(authModal);
@@ -90,24 +119,31 @@ if (navSignUp) {
 }
 
 if (showSignIn) {
-  showSignIn.addEventListener("click", () => setAuthMode("signin"));
+  showSignIn.addEventListener("click", () => {
+    setAuthMode("signin");
+  });
 }
 
 if (showSignUp) {
-  showSignUp.addEventListener("click", () => setAuthMode("signup"));
+  showSignUp.addEventListener("click", () => {
+    setAuthMode("signup");
+  });
 }
 
 if (closeAuthModal) {
-  closeAuthModal.addEventListener("click", () => closeModal(authModal));
+  closeAuthModal.addEventListener("click", () => {
+    closeModal(authModal);
+  });
 }
 
 if (authModal) {
   authModal.addEventListener("click", (e) => {
-    if (e.target === authModal) closeModal(authModal);
+    if (e.target === authModal) {
+      closeModal(authModal);
+    }
   });
 }
 
-// SIGN UP: creates Firebase Auth user + saves username/email in Firestore Users
 if (signUpForm) {
   signUpForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -134,8 +170,12 @@ if (signUpForm) {
         createdAt: serverTimestamp(),
       });
 
-      signUpMsg.textContent = `Account created for ${username}!`;
+      signUpMsg.textContent = "Account created!";
       signUpForm.reset();
+
+      setTimeout(() => {
+        closeModal(authModal);
+      }, 700);
     } catch (error) {
       signUpMsg.textContent = error.message;
       console.error(error);
@@ -143,7 +183,6 @@ if (signUpForm) {
   });
 }
 
-// SIGN IN
 if (signInForm) {
   signInForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -162,8 +201,12 @@ if (signInForm) {
         signedInAt: serverTimestamp(),
       });
 
-      signInMsg.textContent = `Signed in as ${email}`;
+      signInMsg.textContent = "Signed in!";
       signInForm.reset();
+
+      setTimeout(() => {
+        closeModal(authModal);
+      }, 700);
     } catch (error) {
       signInMsg.textContent = error.message;
       console.error(error);
@@ -171,23 +214,37 @@ if (signInForm) {
   });
 }
 
-// MAILING LIST
 const mailingModal = document.getElementById("mailingModal");
 const openMailingModalNav = document.getElementById("openMailingModalNav");
 const openMailingModalHero = document.getElementById("openMailingModalHero");
 const closeMailingModal = document.getElementById("closeMailingModal");
 const signupForm = document.getElementById("signupForm");
+const signupMsg = document.getElementById("signup-msg");
 
 if (openMailingModalNav) {
-  openMailingModalNav.addEventListener("click", () => openModal(mailingModal));
+  openMailingModalNav.addEventListener("click", () => {
+    openModal(mailingModal);
+  });
 }
 
 if (openMailingModalHero) {
-  openMailingModalHero.addEventListener("click", () => openModal(mailingModal));
+  openMailingModalHero.addEventListener("click", () => {
+    openModal(mailingModal);
+  });
 }
 
 if (closeMailingModal) {
-  closeMailingModal.addEventListener("click", () => closeModal(mailingModal));
+  closeMailingModal.addEventListener("click", () => {
+    closeModal(mailingModal);
+  });
+}
+
+if (mailingModal) {
+  mailingModal.addEventListener("click", (e) => {
+    if (e.target === mailingModal) {
+      closeModal(mailingModal);
+    }
+  });
 }
 
 if (signupForm) {
@@ -196,9 +253,8 @@ if (signupForm) {
 
     const name = document.getElementById("signupName").value.trim();
     const email = document.getElementById("signupEmail").value.trim();
-    const msg = document.getElementById("signup-msg");
 
-    msg.textContent = "Submitting...";
+    signupMsg.textContent = "Submitting...";
 
     try {
       await addDoc(collection(db, "Email_Signups"), {
@@ -207,27 +263,39 @@ if (signupForm) {
         createdAt: serverTimestamp(),
       });
 
-      msg.textContent = "You joined the mailing list!";
+      signupMsg.textContent = "You joined the mailing list!";
       signupForm.reset();
     } catch (error) {
-      msg.textContent = error.message;
+      signupMsg.textContent = error.message;
       console.error(error);
     }
   });
 }
 
-// EVENT IDEA
 const ideaModal = document.getElementById("ideaModal");
 const openIdeaModalNav = document.getElementById("openIdeaModalNav");
 const closeIdeaModal = document.getElementById("closeIdeaModal");
 const ideaForm = document.getElementById("ideaForm");
+const ideaMsg = document.getElementById("idea-msg");
 
 if (openIdeaModalNav) {
-  openIdeaModalNav.addEventListener("click", () => openModal(ideaModal));
+  openIdeaModalNav.addEventListener("click", () => {
+    openModal(ideaModal);
+  });
 }
 
 if (closeIdeaModal) {
-  closeIdeaModal.addEventListener("click", () => closeModal(ideaModal));
+  closeIdeaModal.addEventListener("click", () => {
+    closeModal(ideaModal);
+  });
+}
+
+if (ideaModal) {
+  ideaModal.addEventListener("click", (e) => {
+    if (e.target === ideaModal) {
+      closeModal(ideaModal);
+    }
+  });
 }
 
 if (ideaForm) {
@@ -238,9 +306,8 @@ if (ideaForm) {
     const email = document.getElementById("ideaEmail").value.trim();
     const title = document.getElementById("ideaTitle").value.trim();
     const description = document.getElementById("ideaDesc").value.trim();
-    const msg = document.getElementById("idea-msg");
 
-    msg.textContent = "Submitting...";
+    ideaMsg.textContent = "Submitting...";
 
     try {
       await addDoc(collection(db, "Idea_Submissions"), {
@@ -251,28 +318,40 @@ if (ideaForm) {
         createdAt: serverTimestamp(),
       });
 
-      msg.textContent = "Event idea submitted!";
+      ideaMsg.textContent = "Event idea submitted!";
       ideaForm.reset();
     } catch (error) {
-      msg.textContent = error.message;
+      ideaMsg.textContent = error.message;
       console.error(error);
     }
   });
 }
 
-// CREATE EVENT
 const eventModal = document.getElementById("eventModal");
 const openEventModal = document.getElementById("openEventModal");
 const closeEventModal = document.getElementById("closeEventModal");
 const createEventForm = document.getElementById("createEventForm");
 const eventsGrid = document.getElementById("eventsGrid");
+const eventMsg = document.getElementById("event-msg");
 
 if (openEventModal) {
-  openEventModal.addEventListener("click", () => openModal(eventModal));
+  openEventModal.addEventListener("click", () => {
+    openModal(eventModal);
+  });
 }
 
 if (closeEventModal) {
-  closeEventModal.addEventListener("click", () => closeModal(eventModal));
+  closeEventModal.addEventListener("click", () => {
+    closeModal(eventModal);
+  });
+}
+
+if (eventModal) {
+  eventModal.addEventListener("click", (e) => {
+    if (e.target === eventModal) {
+      closeModal(eventModal);
+    }
+  });
 }
 
 if (createEventForm) {
@@ -287,6 +366,8 @@ if (createEventForm) {
     const description = document
       .getElementById("eventDescription")
       .value.trim();
+
+    eventMsg.textContent = "Adding event...";
 
     try {
       await addDoc(collection(db, "Events"), {
@@ -313,10 +394,16 @@ if (createEventForm) {
       `;
 
       eventsGrid.prepend(card);
+
+      eventMsg.textContent = "Event added!";
       createEventForm.reset();
-      closeModal(eventModal);
+
+      setTimeout(() => {
+        closeModal(eventModal);
+        eventMsg.textContent = "";
+      }, 1000);
     } catch (error) {
-      alert(error.message);
+      eventMsg.textContent = error.message;
       console.error(error);
     }
   });
