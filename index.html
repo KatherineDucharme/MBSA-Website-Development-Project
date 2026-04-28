@@ -6,23 +6,24 @@
     <title>MBSA – Multicultural Business Student Association</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
-    <!-- ═══════════════════════════
-         NAVIGATION
-    ═══════════════════════════ -->
     <nav id="navbar">
       <a href="#hero" class="nav-logo">
         <span class="logo-mbsa">MBSA</span>
       </a>
+
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
         &#9776;
       </button>
+
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
         <li><a href="#events">Events</a></li>
         <li><a href="#past-events">Past Events</a></li>
         <li><a href="#board">Board</a></li>
         <li><a href="#contact">Contact</a></li>
+
         <div class="nav-actions">
           <button id="openMailingModalNav" class="nav-action-btn">
             Join Mailing List
@@ -36,9 +37,6 @@
       </ul>
     </nav>
 
-    <!-- ═══════════════════════════
-         HERO
-    ═══════════════════════════ -->
     <header id="hero">
       <div class="hero-content">
         <p class="hero-eyebrow">University of Wisconsin–Madison</p>
@@ -56,18 +54,16 @@
       </div>
     </header>
 
-    <!-- ═══════════════════════════
-         ABOUT
-    ═══════════════════════════ -->
     <section id="about">
-  <div class="section-inner about-header">
-    <div class="about-text">
-      <div class="section-label">Who We Are</div>
-      <h2>About MBSA</h2>
-    </div>
+      <div class="section-inner">
+        <div class="about-header">
+          <div class="about-text">
+            <div class="section-label">Who We Are</div>
+            <h2>About MBSA</h2>
+          </div>
+          <img src="IMG_9598.jpg" alt="MBSA Logo" class="about-logo" />
+        </div>
 
-    <img src="IMG_9598.jpg" alt="MBSA Logo" class="about-logo" />
-  </div>
         <p class="section-body">
           MBSA is a student organization at the University of Wisconsin–Madison
           dedicated to supporting business-minded students from all backgrounds.
@@ -75,6 +71,7 @@
           LinkedIn coaching, and social events to help our members grow
           personally and professionally.
         </p>
+
         <div class="pillars">
           <div class="pillar">
             <div class="pillar-icon">&#128218;</div>
@@ -84,6 +81,7 @@
               up for success.
             </p>
           </div>
+
           <div class="pillar">
             <div class="pillar-icon">&#127760;</div>
             <h3>Cultural Connection</h3>
@@ -92,6 +90,7 @@
               perspectives in business.
             </p>
           </div>
+
           <div class="pillar">
             <div class="pillar-icon">&#129309;</div>
             <h3>Community</h3>
@@ -104,12 +103,10 @@
       </div>
     </section>
 
-    <!-- ═══════════════════════════
-         UPCOMING EVENTS
-    ═══════════════════════════ -->
     <section id="events" class="section-alt">
       <div class="section-inner">
         <div class="section-label">What's Coming Up</div>
+
         <div class="events-header">
           <div>
             <h2>Upcoming Events</h2>
@@ -118,6 +115,7 @@
               welcome.
             </p>
           </div>
+
           <button id="openEventModal" class="btn btn-red">
             Create New Event
           </button>
@@ -125,9 +123,6 @@
 
         <div class="events-grid" id="eventsGrid">
           <article class="event-card">
-            <button class="delete-event-btn" aria-label="Delete event">
-              &times;
-            </button>
             <div class="event-tag">Workshop</div>
             <h3>Resume Workshop</h3>
             <div class="event-meta">
@@ -141,9 +136,6 @@
           </article>
 
           <article class="event-card">
-            <button class="delete-event-btn" aria-label="Delete event">
-              &times;
-            </button>
             <div class="event-tag">Speaker</div>
             <h3>Speaker Night</h3>
             <div class="event-meta">
@@ -158,9 +150,6 @@
           </article>
 
           <article class="event-card">
-            <button class="delete-event-btn" aria-label="Delete event">
-              &times;
-            </button>
             <div class="event-tag">Social</div>
             <h3>Spring Social</h3>
             <div class="event-meta">
@@ -177,9 +166,6 @@
       </div>
     </section>
 
-    <!-- ═══════════════════════════
-         PAST EVENTS (SKELETON)
-    ═══════════════════════════ -->
     <section id="past-events">
       <div class="section-inner">
         <div class="section-label">Our History</div>
@@ -208,14 +194,12 @@
       </div>
     </section>
 
-    <!-- ═══════════════════════════
-         BOARD MEMBERS
-    ═══════════════════════════ -->
     <section id="board" class="section-alt">
       <div class="section-inner">
         <div class="section-label">Leadership</div>
         <h2>Our Board</h2>
         <p class="section-body">Meet the student leaders behind MBSA.</p>
+
         <div class="board-grid">
           <div class="board-card">
             <img
@@ -229,6 +213,7 @@
               Senior<br />Major(s): Finance, Management and Human Resources
             </p>
           </div>
+
           <div class="board-card">
             <img
               src="IMG_9554.jpg"
@@ -241,6 +226,7 @@
               Senior<br />Major(s): Marketing, Certificate in French
             </p>
           </div>
+
           <div class="board-card">
             <img
               src="IMG_9555.jpg"
@@ -254,6 +240,7 @@
               Fundamentals
             </p>
           </div>
+
           <div class="board-card">
             <img
               src="IMG_9557.jpg"
@@ -264,12 +251,14 @@
             <p class="role">VP of Finance</p>
             <p class="bio">Junior<br />Major(s): Accounting and Info Systems</p>
           </div>
+
           <div class="board-card">
             <img src="IMG_9558.jpg" alt="Emily Pan" class="board-photo-large" />
             <h3>Emily Pan</h3>
             <p class="role">VP of Communications</p>
             <p class="bio">Sophomore<br />Major: Finance</p>
           </div>
+
           <div class="board-card">
             <img
               src="IMG_9556.jpg"
@@ -283,6 +272,7 @@
               Technology Management
             </p>
           </div>
+
           <div class="board-card">
             <img
               src="IMG_9561.jpg"
@@ -295,6 +285,7 @@
               Sophomore<br />Major(s): Accounting and Info Systems
             </p>
           </div>
+
           <div class="board-card">
             <img
               src="IMG_9560.jpg"
@@ -309,9 +300,6 @@
       </div>
     </section>
 
-    <!-- ═══════════════════════════
-         CONTACT
-    ═══════════════════════════ -->
     <section id="contact" class="section-alt">
       <div class="section-inner contact-inner">
         <div>
@@ -324,9 +312,9 @@
           <ul class="contact-list">
             <li>
               <span class="contact-icon">&#9993;</span>
-              <a href="mailto:mbsa.uw.madison@gmail.com"
-                >mbsa.uw.madison@gmail.com</a
-              >
+              <a href="mailto:mbsa.uw.madison@gmail.com">
+                mbsa.uw.madison@gmail.com
+              </a>
             </li>
             <li>
               <span class="contact-icon">&#128247;</span>
@@ -343,18 +331,16 @@
       </div>
     </section>
 
-    <!-- ═══════════════════════════
-         FOOTER
-    ═══════════════════════════ -->
     <footer>
       <div class="footer-inner">
         <div class="footer-brand">
           <span class="logo-mbsa">MBSA</span>
           <p>
-            Multicultural Business Student Association<br />University of
-            Wisconsin–Madison
+            Multicultural Business Student Association<br />
+            University of Wisconsin–Madison
           </p>
         </div>
+
         <nav class="footer-nav">
           <a href="#about">About</a>
           <a href="#events">Events</a>
@@ -362,10 +348,11 @@
           <a href="#board">Board</a>
           <a href="#contact">Contact</a>
         </nav>
+
         <div class="footer-contact">
-          <a href="mailto:mbsa.uw.madison@gmail.com"
-            >mbsa.uw.madison@gmail.com</a
-          >
+          <a href="mailto:mbsa.uw.madison@gmail.com">
+            mbsa.uw.madison@gmail.com
+          </a>
           <br />
           <a
             href="https://www.instagram.com/mbsa_badgers?igsh=dDMxNGwxd3FpcXZr"
@@ -375,6 +362,7 @@
           </a>
         </div>
       </div>
+
       <div class="footer-bottom">
         <p>
           © 2026 Multicultural Business Student Association · University of
@@ -412,7 +400,12 @@
         <div id="signUpPanel" class="auth-panel hidden">
           <h2>Sign Up</h2>
           <form id="signUpForm" class="auth-form">
-            <input type="text" id="signUpName" placeholder="Name" required />
+            <input
+              type="text"
+              id="signUpUsername"
+              placeholder="Username"
+              required
+            />
             <input type="email" id="signUpEmail" placeholder="Email" required />
             <input
               type="password"
@@ -426,6 +419,7 @@
         </div>
       </div>
     </div>
+
     <div id="eventModal" class="event-modal hidden">
       <div class="event-modal-box">
         <button
@@ -439,12 +433,7 @@
         <h2>Create New Event</h2>
 
         <form id="createEventForm" class="event-form">
-          <input
-            type="text"
-            id="eventType"
-            placeholder="Event type (Workshop, Speaker, Social)"
-            required
-          />
+          <input type="text" id="eventType" placeholder="Event type" required />
           <input
             type="text"
             id="eventTitle"
@@ -466,9 +455,11 @@
             required
           ></textarea>
           <button type="submit" class="btn btn-red">Add Event</button>
+          <p id="event-msg" class="form-msg"></p>
         </form>
       </div>
     </div>
+
     <div id="mailingModal" class="custom-modal hidden">
       <div class="custom-modal-box">
         <button
@@ -478,7 +469,9 @@
         >
           &times;
         </button>
+
         <h2>Join Our Mailing List</h2>
+
         <form class="signup-form modal-form" id="signupForm">
           <input type="text" id="signupName" placeholder="Your name" required />
           <input
@@ -489,6 +482,7 @@
           />
           <button type="submit" class="btn btn-red">Subscribe</button>
         </form>
+
         <p id="signup-msg" class="form-msg"></p>
       </div>
     </div>
@@ -502,7 +496,9 @@
         >
           &times;
         </button>
+
         <h2>Submit an Event Idea</h2>
+
         <form class="idea-form modal-form" id="ideaForm">
           <div class="form-row">
             <input type="text" id="ideaName" placeholder="Your name" required />
@@ -513,23 +509,27 @@
               required
             />
           </div>
+
           <input
             type="text"
             id="ideaTitle"
             placeholder="Event idea title"
             required
           />
+
           <textarea
             id="ideaDesc"
             rows="5"
-            placeholder="Describe your idea — what is it, who is it for, why would it be valuable to MBSA members?"
+            placeholder="Describe your idea"
             required
           ></textarea>
+
           <button type="submit" class="btn btn-red">Submit Idea</button>
           <p id="idea-msg" class="form-msg success"></p>
         </form>
       </div>
     </div>
-    <script src="script.js"></script>
+
+    <script type="module" src="script.js"></script>
   </body>
 </html>
