@@ -1131,3 +1131,11 @@ footer {
     height: 90px;
   }
 }
+
+#loggedOutMessage {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark-gray);
+}

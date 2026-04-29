@@ -69,6 +69,7 @@ const adminEmails = [
 ];
 
 function updatePageVisibility() {
+  const loggedOutMessage = document.getElementById("loggedOutMessage");
   document.querySelectorAll(".protected-content").forEach((element) => {
     if (isSignedIn) {
       element.classList.remove("hidden");
@@ -77,6 +78,9 @@ function updatePageVisibility() {
       element.classList.add("hidden");
     }
   });
+  if (loggedOutMessage) {
+    loggedOutMessage.classList.toggle("hidden", isSignedIn);
+  }
 
   document.querySelectorAll(".admin-only").forEach((element) => {
     if (isSignedIn && isAdmin) {
