@@ -29,10 +29,16 @@
         <li><a href="#contact">Contact</a></li>
 
         <div class="nav-actions">
-          <button id="openMailingModalNav" class="nav-action-btn">
+          <button
+            id="openMailingModalNav"
+            class="nav-action-btn protected-content hidden"
+          >
             Join Mailing List
           </button>
-          <button id="openIdeaModalNav" class="nav-action-btn">
+          <button
+            id="openIdeaModalNav"
+            class="nav-action-btn protected-content hidden"
+          >
             Submit Event Idea
           </button>
           <button id="navSignIn" class="nav-action-btn">Sign In</button>
@@ -42,7 +48,7 @@
       </ul>
     </nav>
 
-    <header id="hero">
+    <header id="hero" class="protected-content hidden">
       <div class="hero-content">
         <p class="hero-eyebrow">University of Wisconsin–Madison</p>
         <h1>Multicultural Business<br />Student Association</h1>
@@ -59,7 +65,7 @@
       </div>
     </header>
 
-    <section id="about">
+    <section id="about" class="protected-content hidden">
       <div class="section-inner">
         <div class="about-header">
           <div class="about-text">
@@ -108,7 +114,7 @@
       </div>
     </section>
 
-    <section id="events" class="section-alt">
+    <section id="events" class="section-alt protected-content hidden">
       <div class="section-inner">
         <div class="section-label">What's Coming Up</div>
 
@@ -121,14 +127,17 @@
             </p>
           </div>
 
-          <button id="openEventModal" class="btn btn-red">
+          <button id="openEventModal" class="btn btn-red admin-only hidden">
             Create New Event
           </button>
         </div>
 
         <div class="events-grid" id="eventsGrid">
           <article class="event-card">
-            <button class="delete-event-btn" aria-label="Delete event">
+            <button
+              class="delete-event-btn admin-only hidden"
+              aria-label="Delete event"
+            >
               &times;
             </button>
             <div class="event-tag">Workshop</div>
@@ -144,7 +153,10 @@
           </article>
 
           <article class="event-card">
-            <button class="delete-event-btn" aria-label="Delete event">
+            <button
+              class="delete-event-btn admin-only hidden"
+              aria-label="Delete event"
+            >
               &times;
             </button>
             <div class="event-tag">Speaker</div>
@@ -161,7 +173,10 @@
           </article>
 
           <article class="event-card">
-            <button class="delete-event-btn" aria-label="Delete event">
+            <button
+              class="delete-event-btn admin-only hidden"
+              aria-label="Delete event"
+            >
               &times;
             </button>
             <div class="event-tag">Social</div>
@@ -180,7 +195,7 @@
       </div>
     </section>
 
-    <section id="past-events">
+    <section id="past-events" class="protected-content hidden">
       <div class="section-inner">
         <div class="section-label">Our History</div>
         <h2>Past Events</h2>
@@ -208,7 +223,7 @@
       </div>
     </section>
 
-    <section id="board" class="section-alt">
+    <section id="board" class="section-alt protected-content hidden">
       <div class="section-inner">
         <div class="section-label">Leadership</div>
         <h2>Our Board</h2>
@@ -314,7 +329,7 @@
       </div>
     </section>
 
-    <section id="contact" class="section-alt">
+    <section id="contact" class="section-alt protected-content hidden">
       <div class="section-inner contact-inner">
         <div>
           <div class="section-label">Reach Out</div>
@@ -345,7 +360,7 @@
       </div>
     </section>
 
-    <footer>
+    <footer class="protected-content hidden">
       <div class="footer-inner">
         <div class="footer-brand">
           <span class="logo-mbsa">MBSA</span>

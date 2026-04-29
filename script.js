@@ -54,6 +54,61 @@ const navSignIn = document.getElementById("navSignIn");
 const navSignUp = document.getElementById("navSignUp");
 const navLogout = document.getElementById("navLogout");
 
+const protectedContent = document.querySelectorAll(".protected-content");
+const adminOnlyElements = document.querySelectorAll(".admin-only");
+
+let isSignedIn = false;
+let isAdmin = false;
+
+const adminEmails = [
+  "hkaczor@wisc.edu",
+  "kaducharme@wisc.edu",
+  "sstafeil@wisc.edu",
+  "wbah@wisc.edu",
+  "echansen2@wisc.edu",
+];
+
+function updatePageVisibility() {
+  document.querySelectorAll(".protected-content").forEach((element) => {
+    if (isSignedIn) {
+      element.classList.remove("hidden");
+      element.style.removeProperty("display");
+    } else {
+      element.classList.add("hidden");
+    }
+  });
+
+  document.querySelectorAll(".admin-only").forEach((element) => {
+    if (isSignedIn && isAdmin) {
+      element.classList.remove("hidden");
+      element.style.removeProperty("display");
+    } else {
+      element.classList.add("hidden");
+    }
+  });
+
+  if (navSignIn) navSignIn.classList.toggle("hidden", isSignedIn);
+  if (navSignUp) navSignUp.classList.toggle("hidden", isSignedIn);
+  if (navLogout) navLogout.classList.toggle("hidden", !isSignedIn);
+}
+
+function signInUser(email) {
+  console.log("SIGNED IN USER:", email);
+
+  isSignedIn = true;
+  isAdmin = adminEmails.includes(email.toLowerCase());
+
+  console.log("isSignedIn:", isSignedIn);
+  console.log("isAdmin:", isAdmin);
+  console.log(
+    "protectedContent count:",
+    document.querySelectorAll(".protected-content").length,
+  );
+
+  updatePageVisibility();
+  closeModal(authModal);
+}
+
 const showSignIn = document.getElementById("showSignIn");
 const showSignUp = document.getElementById("showSignUp");
 
@@ -82,15 +137,11 @@ function setAuthMode(mode) {
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    if (navSignIn) navSignIn.style.display = "none";
-    if (navSignUp) navSignUp.style.display = "none";
-    if (navLogout) navLogout.classList.remove("hidden");
-
-    closeModal(authModal);
+    signInUser(user.email);
   } else {
-    if (navSignIn) navSignIn.style.display = "inline-block";
-    if (navSignUp) navSignUp.style.display = "inline-block";
-    if (navLogout) navLogout.classList.add("hidden");
+    isSignedIn = false;
+    isAdmin = false;
+    updatePageVisibility();
   }
 });
 
@@ -145,14 +196,11 @@ if (authModal) {
 }
 
 if (signUpForm) {
-  signUpForm.addEventListener("submit", async (e) => {
+  signUpForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const username = document.getElementById("signUpUsername").value.trim();
     const email = document.getElementById("signUpEmail").value.trim();
-    const password = document.getElementById("signUpPassword").value;
-
-    signUpMsg.textContent = "Creating account...";
+    const password = document.getElementById("signUpPassword").value.trim();
 
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -161,21 +209,8 @@ if (signUpForm) {
         password,
       );
 
-      const user = userCredential.user;
-
-      await setDoc(doc(db, "Users", user.uid), {
-        username: username,
-        email: email,
-        uid: user.uid,
-        createdAt: serverTimestamp(),
-      });
-
-      signUpMsg.textContent = "Account created!";
-      signUpForm.reset();
-
-      setTimeout(() => {
-        closeModal(authModal);
-      }, 700);
+      signInUser(userCredential.user.email);
+      this.reset();
     } catch (error) {
       signUpMsg.textContent = error.message;
       console.error(error);
@@ -184,29 +219,21 @@ if (signUpForm) {
 }
 
 if (signInForm) {
-  signInForm.addEventListener("submit", async (e) => {
+  signInForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const email = document.getElementById("signInEmail").value.trim();
-    const password = document.getElementById("signInPassword").value;
-
-    signInMsg.textContent = "Signing in...";
+    const password = document.getElementById("signInPassword").value.trim();
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
 
-      await addDoc(collection(db, "Users"), {
-        email: email,
-        action: "signed_in",
-        signedInAt: serverTimestamp(),
-      });
-
-      signInMsg.textContent = "Signed in!";
-      signInForm.reset();
-
-      setTimeout(() => {
-        closeModal(authModal);
-      }, 700);
+      signInUser(userCredential.user.email);
+      this.reset();
     } catch (error) {
       signInMsg.textContent = error.message;
       console.error(error);
@@ -336,6 +363,7 @@ const eventMsg = document.getElementById("event-msg");
 
 if (openEventModal) {
   openEventModal.addEventListener("click", () => {
+    if (!isAdmin) return;
     openModal(eventModal);
   });
 }
@@ -355,8 +383,10 @@ if (eventModal) {
 }
 
 if (createEventForm) {
-  createEventForm.addEventListener("submit", async (e) => {
+  createEventForm.addEventListener("submit", async function (e) {
     e.preventDefault();
+
+    if (!isAdmin) return;
 
     const type = document.getElementById("eventType").value.trim();
     const title = document.getElementById("eventTitle").value.trim();
@@ -371,29 +401,32 @@ if (createEventForm) {
 
     try {
       await addDoc(collection(db, "Events"), {
-        type: type,
-        title: title,
-        date: date,
-        time: time,
-        location: location,
-        description: description,
+        type,
+        title,
+        date,
+        time,
+        location,
+        description,
         createdAt: serverTimestamp(),
       });
 
       const card = document.createElement("article");
       card.className = "event-card";
+
       card.innerHTML = `
-  <button class="delete-event-btn" aria-label="Delete event">&times;</button>
-  <div class="event-tag">${type}</div>
-  <h3>${title}</h3>
-  <div class="event-meta">
-    <span>&#128197; ${date}</span>
-    <span>&#128336; ${time}</span>
-    <span>&#128205; ${location}</span>
-  </div>
-  <p>${description}</p>
-`;
+        <button class="delete-event-btn admin-only" aria-label="Delete event">&times;</button>
+        <div class="event-tag">${type}</div>
+        <h3>${title}</h3>
+        <div class="event-meta">
+          <span>&#128197; ${date}</span>
+          <span>&#128336; ${time}</span>
+          <span>&#128205; ${location}</span>
+        </div>
+        <p>${description}</p>
+      `;
+
       eventsGrid.prepend(card);
+      updatePageVisibility();
 
       eventMsg.textContent = "Event added!";
       createEventForm.reset();
@@ -412,38 +445,10 @@ if (createEventForm) {
 if (eventsGrid) {
   eventsGrid.addEventListener("click", (e) => {
     if (e.target.classList.contains("delete-event-btn")) {
+      if (!isAdmin) return;
       e.target.closest(".event-card").remove();
     }
   });
 }
 
-// Admin email
-const adminEmails = [
-  "echansen2@wisc.edu",
-  "sstafeil@wisc.edu",
-  "kaducharme@wisc.edu",
-  "wbah@wisc.edu",
-  "hkaczor@wisc.edu",
-];
-let currentUserEmail = "";
-
-if (signInForm) {
-  signInForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    currentUserEmail = document
-      .getElementById("signInEmail")
-      .value.trim()
-      .toLowerCase();
-
-    if (currentUserEmail !== adminEmail.toLowerCase()) {
-      if (openEventModal) {
-        openEventModal.style.display = "none";
-      }
-
-      document.querySelectorAll(".delete-event-btn").forEach((btn) => {
-        btn.style.display = "none";
-      });
-    }
-  });
-}
+updatePageVisibility();
